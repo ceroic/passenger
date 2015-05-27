@@ -10,11 +10,16 @@ CMD ["/sbin/my_init"]
 # Install Packages
 RUN \
     apt-get update && \
-    apt-get install -y pkg-config python-dev python-pip
+    apt-get install -y pkg-config python-dev python-pip libpq-dev libffi-dev \
+    libfreetype6 libfreetype6-dev libpng-dev libncurses5-dev python2.7-dev
+
+# Install some heavy python packages we don't want installing for the app.
+RUN pip install -U virtualenv gnureadline 'celery[redis]' flower pyzmq pandas==0.16.1
 
 # Our script to install python requirements
 RUN mkdir -p /etc/my_init.d
-ADD installrequirements.sh /etc/my_init.d/installrequirements.sh
+ADD install_requirements.sh /etc/my_init.d/install_requirements.sh
+ADD fix_permissions.sh /etc/my_init.d/fix_permissions.sh
 
 # Enable nginx
 RUN rm /etc/nginx/sites-enabled/default
