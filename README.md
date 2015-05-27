@@ -40,4 +40,6 @@ For more information see https://github.com/phusion/passenger-docker#configuring
 
 ### Python Worker
 
+[![Docker Repository on Quay.io](https://quay.io/repository/ceroic/passenger-python-worker/status "Docker Repository on Quay.io")](https://quay.io/repository/ceroic/passenger-python-worker)
+
 Python worker is exactly the same as web except it does not enable nginx.
