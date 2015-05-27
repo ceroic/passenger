@@ -37,3 +37,7 @@ expects the following conventions:
 - A volume containing your nginx env configuration mounted to /etc/nginx/main.d
 
 For more information see https://github.com/phusion/passenger-docker#configuring-nginx
+
+### Python Worker
+
+Python worker is exactly the same as web except it does not enable nginx.
