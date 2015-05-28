@@ -33,10 +33,17 @@ expects the following conventions:
 
 - A requirements file to be in the project root.
 - A volume containing your application code mounted to /home/app
+- Your app has a sub-folder 'server' with your WSGI application. (Note: This may be changed.)
 - A volume containing your nginx site configuration mounted to /etc/nginx/sites-enabled
 - A volume containing your nginx env configuration mounted to /etc/nginx/main.d
 
 For more information see https://github.com/phusion/passenger-docker#configuring-nginx
+
+##### Migrating Django
+
+If an env var MIGRATE_DJANGO is set, the image will attempt to run:
+
+./home/app/server/manage.py migrate
 
 ### Python Worker
 
