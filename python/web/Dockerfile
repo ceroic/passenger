@@ -3,9 +3,13 @@ MAINTAINER Ceroic <ops@ceroic.com>
 
 # Set correct environment variables.
 ENV HOME /root
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Use baseimage-docker's init process.
 CMD ["/sbin/my_init"]
+
+# Upgrade Passenger
+RUN apt-get update && apt-get install -y -o Dpkg::Options::="--force-confold" passenger nginx-extras
 
 # Install Packages
 RUN \
