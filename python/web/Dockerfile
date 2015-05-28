@@ -44,3 +44,6 @@ RUN rm -f /etc/service/nginx/down
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Set our working directory to our server
+WORKDIR /home/app/server

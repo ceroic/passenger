@@ -3,6 +3,7 @@ MAINTAINER Ceroic <ops@ceroic.com>
 
 # Set correct environment variables.
 ENV HOME /root
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Use baseimage-docker's init process.
 CMD ["/sbin/my_init"]
@@ -18,8 +19,9 @@ RUN pip install -U virtualenv gnureadline 'celery[redis]' flower pyzmq pandas==0
 
 # Our script to install python requirements
 RUN mkdir -p /etc/my_init.d
-ADD install_requirements.sh /etc/my_init.d/install_requirements.sh
-ADD fix_permissions.sh /etc/my_init.d/fix_permissions.sh
+ADD fix_permissions.sh /etc/my_init.d/00_fix_permissions.sh
+ADD install_requirements.sh /etc/my_init.d/01_install_requirements.sh
+ADD migrate_django.sh /etc/my_init.d/02_migrate_django.sh
 
 # Enable nginx
 # RUN rm /etc/nginx/sites-enabled/default
@@ -39,3 +41,6 @@ ADD fix_permissions.sh /etc/my_init.d/fix_permissions.sh
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Set our working directory to our server
+WORKDIR /home/app/server
