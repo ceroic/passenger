@@ -18,8 +18,9 @@ RUN pip install -U virtualenv gnureadline 'celery[redis]' flower pyzmq pandas==0
 
 # Our script to install python requirements
 RUN mkdir -p /etc/my_init.d
-ADD install_requirements.sh /etc/my_init.d/install_requirements.sh
-ADD fix_permissions.sh /etc/my_init.d/fix_permissions.sh
+ADD fix_permissions.sh /etc/my_init.d/00_fix_permissions.sh
+ADD install_requirements.sh /etc/my_init.d/01_install_requirements.sh
+ADD migrate_django.sh /etc/my_init.d/02_migrate_django.sh
 
 # Enable nginx
 RUN rm /etc/nginx/sites-enabled/default
