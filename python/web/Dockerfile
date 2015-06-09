@@ -18,7 +18,7 @@ RUN \
     libfreetype6 libfreetype6-dev libpng-dev libncurses5-dev python2.7-dev
 
 # Install some heavy python packages we don't want installing for the app.
-RUN pip install -U virtualenv gnureadline 'celery[redis]' flower pyzmq pandas==0.16.1
+RUN pip install -U virtualenv gnureadline 'celery[redis]' flower pyzmq pandas==0.16.1 Pillow
 
 # Our script to install python requirements
 RUN mkdir -p /etc/my_init.d
