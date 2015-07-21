@@ -1,4 +1,4 @@
-FROM phusion/passenger-full:0.9.16
+FROM phusion/passenger-nodejs:0.9.16
 MAINTAINER Ceroic <ops@ceroic.com>
 
 # Set correct environment variables.
